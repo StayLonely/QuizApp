@@ -1,0 +1,59 @@
+#: kivy 2.2.1
+<MainWindow>:
+    orientation: 'vertical'
+
+    MDTopAppBar:
+        title:'Прохождение Опросов'
+    MDBottomNavigation:
+
+        MDBottomNavigationItem:
+
+            name: "profile"
+            text: 'Профиль'
+            icon: 'account'
+            MDBoxLayout:
+                orientation:'vertical'
+                MDBoxLayout:
+                    MDTextField:
+                        hint_text: 'Имя'
+                    MDRectangleFlatButton:
+                        text: 'Сохранить'
+
+                MDBoxLayout:
+                    MDTextField:
+                        hint_text: 'Логин'
+                    MDRectangleFlatButton:
+                        text: 'Сохранить'
+                Widget:
+
+        MDBottomNavigationItem:
+            name: "quiz"
+            text: 'Опросы'
+            icon: 'notebook-outline'
+            on_tab_release: app.show_all_quiz()
+            MDBoxLayout:
+                orientation:'vertical'
+                MDBoxLayout:
+                    MDTextField:
+                        id: search_name
+                        hint_text: 'Название опроса'
+                    MDRectangleFlatButton:
+                        text: 'Поиск'
+                        on_release:
+                            app.name_search_quiz_list(root.ids.search_name.text)
+
+
+                MDScrollView:
+                    MDList:
+                        id: search_results
+
+
+                Widget:
+
+<SearchQuizItem>:
+    IconLeftWidget:
+        icon: 'note'
+    RightButton:
+        icon: 'open-in-new'
+
+
